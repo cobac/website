@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: deploy file
-        uses: wlixcc/SFTP-Deploy-Action@master
+        uses: leoppro/SFTP-Deploy-Action@master
         with:
           username: "cobaca"
           server: "www5.your-server.de"
@@ -16,3 +16,4 @@ jobs:
           local_path: './public/*'
           remote_path: '/public_html'
           args: '-o ConnectTimeout=5'
+          sftp_only: true
