@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: deploy file
-        uses: wlixcc/SFTP-Deploy-Action@latest
+        uses: wlixcc/SFTP-Deploy-Action@master
         with:
           username: "cobaca"
           server: "www5.your-server.de"
