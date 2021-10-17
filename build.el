@@ -42,8 +42,8 @@ From https://gist.github.com/bigodel/56a4627afdfe9ad28f6dcc68b89a97f8"
 				org-static-blog-drafts-directory (concat coba-website-folder "drafts/")
 				org-static-blog-enable-tags t
 				org-static-blog-use-preview t
-				org-static-blog-preview-ellipsis "<div id=\"read more\">Read more.</div>"
 				org-static-blog-index-length 1
+				org-static-blog-preview-ellipsis "<div id=\"read more\">[Post continues...]</div>"
 				org-export-with-toc nil
 				org-export-with-section-numbers nil
 				;; This header is inserted into the <head> section of every page:
