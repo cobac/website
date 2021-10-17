@@ -7,7 +7,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: deploy file
+
+      - name: Install Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: 27.2
+
+      - name: Build site
+        run: emacs -Q --script build.el
+
+      - name: Deploy files
         uses: leoppro/SFTP-Deploy-Action@master
         with:
           username: "cobaca"
