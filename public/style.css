@@ -1,10 +1,9 @@
 /* Starting point from https://simplecss.org/
 /* Set the global variables for everything. Change these to use your own fonts/colours. */
 :root {
-
-    /* Set sans-serif & mono fonts */
     --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", Roboto, Noto, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
-    --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    --mono-font: "IBM Plex Mono", Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    --serif-font: "IBM Plex Serif", "Ubuntu Condensed", serif;
 
     /* Body font size. By default, effectively 18.4px, based on 16px as 'root em' */
     --base-fontsize: 1.15rem;
@@ -30,28 +29,28 @@
 }
 
 /* Dark theme */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #212121;
-        --accent-bg: #2B2B2B;
-        --text: #DCDCDC;
-        --text-light: #ABABAB;
-        --border: #666;
-        --accent: #FFB300;
-        --accent-light: #FFECB3;
-        --code: #F06292;
-        --preformatted: #CCC;
-        --disabled: #111;
-    }
+/* @media (prefers-color-scheme: dark) { */
+/*     :root { */
+/*         --bg: #212121; */
+/*         --accent-bg: #2B2B2B; */
+/*         --text: #DCDCDC; */
+/*         --text-light: #ABABAB; */
+/*         --border: #666; */
+/*         --accent: #FFB300; */
+/*         --accent-light: #FFECB3; */
+/*         --code: #F06292; */
+/*         --preformatted: #CCC; */
+/*         --disabled: #111; */
+/*     } */
 
-    img, video {
-        opacity: .6;
-    }
-}
+/*     img, video { */
+/*         opacity: .6; */
+/*     } */
+/* } */
 
 html {
     /* Set the font globally */
-    font-family: var(--sans-font);
+    font-family: var(--serif-font);
 }
 
 /* Make the body a nice central block */
@@ -486,3 +485,17 @@ pre code {
     margin: 0;
     padding: 0;
 }
+
+/* org-static-blog export elements */
+
+#preamble {
+    font-size: calc(var(--base-fontsize) * var(--header-scale) * var(--header-scale) * var(--header-scale) * var(--header-scale));
+    margin-top: calc(var(--line-height) * 1.5rem);
+    text-align: center;
+}
+
+/* No links  in preamble  */
+#preamble a {
+    text-decoration: none;
+}
+
