@@ -467,8 +467,7 @@ kbd {
 		padding: .1rem;
 }
 
-pre {
-		padding: 1rem 1.4rem;
+pre, code{
 		max-width: 100%;
 		overflow: auto;
 		overflow-x: auto;
@@ -477,6 +476,16 @@ pre {
 		border: 1px solid var(--border);
 		border-radius: 5px;
 }
+
+pre {
+		padding: 1rem 1.4rem;
+}
+
+code {
+		padding: 0.2rem 0.28rem;
+}
+
+
 
 /* Fix embedded code within pre */
 pre code {
