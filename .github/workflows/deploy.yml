@@ -1,4 +1,4 @@
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   deploy_job:
@@ -21,7 +21,7 @@ jobs:
         with:
           username: "cobaca"
           server: "www5.your-server.de"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: './public/*'
           remote_path: '/public_html'
           args: '-o ConnectTimeout=5'
