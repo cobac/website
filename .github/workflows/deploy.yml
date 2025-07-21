@@ -6,15 +6,7 @@ jobs:
     name: deploy
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install Emacs
-        uses: purcell/setup-emacs@master
-        with:
-          version: 27.2
-
-      - name: Build site
-        run: make all
+        uses: actions/checkout@v4
 
       - name: Deploy files
         uses: leoppro/SFTP-Deploy-Action@master

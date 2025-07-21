@@ -1,9 +1,9 @@
 /* Starting point from https://simplecss.org/
 /* Set the global variables for everything. Change these to use your own fonts/colours. */
 :root {
-		--sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", Roboto, Noto, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
-		--mono-font: "IBM Plex Mono", Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-		--serif-font: "IBM Plex Serif", "Ubuntu Condensed", serif;
+		--sans-font:  "IBM Plex Sans", sans-serif;
+		--mono-font: "IBM Plex Mono", monospace;
+		--serif-font: "IBM Plex Serif", serif;
 
 		/* Body font size. By default, effectively 18.4px, based on 16px as 'root em' */
 		--base-fontsize: 1.15rem;
@@ -50,7 +50,7 @@
 
 html {
 		/* Set the font globally */
-		font-family: var(--serif-font);
+		font-family: var(--mono-font);
 }
 
 /* Make the body a nice central block */
@@ -494,17 +494,3 @@ pre code {
 		margin: 0;
 		padding: 0;
 }
-
-/* org-static-blog export elements */
-
-#preamble {
-		font-size: calc(var(--base-fontsize) * var(--header-scale) * var(--header-scale) * var(--header-scale) * var(--header-scale));
-		margin-top: calc(var(--line-height) * 1.5rem);
-		text-align: center;
-}
-
-/* No links	 in preamble	*/
-#preamble a {
-		text-decoration: none;
-}
-

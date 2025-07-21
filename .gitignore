@@ -1,5 +1,4 @@
 .github/secrets/**
-public/*.html
 public/*.html~
 public/*.xml
 public/*.xml~
