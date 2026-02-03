@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy files
-        uses: leoppro/SFTP-Deploy-Action@master
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           username: "cobaca"
           server: "www5.your-server.de"
