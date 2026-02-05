@@ -7,18 +7,68 @@
 
     color-scheme: dark;
     --bg: #000000;
-    --accent-bg: #2b2b2b;
     --text: #ffffff;
-    --text-light: #ababab;
     --accent: #ffb300;
     --accent-hover: #ffe099;
+    --accent-bg: #2b2b2b;
+    --text-light: #ababab;
     --accent-text: var(--bg);
     --code: #f06292;
     --preformatted: #ccc;
     --disabled: #111;
 }
 
-html {font-family: var(--serif-font)}
+html {
+    font-family: var(--serif-font);
+
+}
+
+html ::selection {
+    color: var(--bg);
+    background: var(--accent-hover);
+}
+
+a,
+a:visited {
+    color: var(--text);
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+}
+
+a:hover {
+    text-decoration-line: underline overline;
+    text-decoration-style: dashed;
+}
+
+body > header {
+    background-color: var(--bg);
+    border-bottom: var(--border-width) solid var(--border);
+    text-align: left;
+    padding: 0 0 0 0;
+    grid-column: 2;
+}
+
+header nav a,
+header nav a:visited {
+    margin: 0 1 0 0;
+    border: none;
+    font-size: 1.15rem;
+    color: var(--text);
+    display: inline;
+    padding: 0 0;
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
+header nav a:hover,
+header nav a.current,
+header nav a[aria-current="page"],
+header nav a[aria-current="true"] {
+    background: var(--bg);
+    border-color: var(--accent);
+    color: var(--accent);
+    cursor: pointer;
+}
 
 body > footer {
     text-align: left;
@@ -29,5 +79,4 @@ body > footer {
         color: var(--accent-hover);
         text-decoration: none;
     }
-
 }
