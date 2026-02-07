@@ -32,7 +32,7 @@ progress {
 
 html {
     font-family: var(--serif-font);
-    font-size: 18px;
+    font-size: clamp(16px, 2.1vw, 22px);
     font-kerning: normal;
     scroll-behavior: smooth;
 }
@@ -45,10 +45,9 @@ html {
 body {
     color: var(--text);
     background-color: var(--bg);
-    font-size: 1rem;
     line-height: 1.5;
     display: grid;
-    grid-template-columns: 1fr min(45rem, 90%) 1fr;
+    grid-template-columns: 1fr min(38rem, 90%) 1fr;
 }
 
 body > * {
