@@ -31,17 +31,19 @@
 
 (setq org-static-blog-index-length 0)
 
+(setq org-static-blog-use-preview t)
+
 (setq org-static-blog-texts
       '((other-posts
          ("coba" . ""))
         (date-format
          ("coba" . "%Y-%m-%d"))
         (tags
-         ("coba" . "tags"))
+         ("coba" . ""))
         (archive
-         ("coba" . "posts"))
+         ("coba" . ""))
         (posts-tagged
-         ("coba" . "Posts tagged"))
+         ("coba" . ""))
         (no-prev-post
          ("coba" . "There is no previous post"))
         (no-next-post
@@ -67,19 +69,18 @@ This function is called for every post and prepended to the post body.
 Modify this function if you want to change a posts headline."
   (concat
    org-static-blog-post-preamble-text
-   "<div class=\"title-with-tags\">"
+   "<div class=\"title-with-tags\">\n"
    "<h1 class=\"post-title\">"
    "<a href=\"" (org-static-blog-get-post-url post-filename) "\">"
    (org-static-blog-get-title
     post-filename)
    "</a>"
-   "</h1>"
-   "<div class=\"taglist\">"
+   "</h1>\n"
+   "<div class=\"taglist\">\n"
    (org-static-blog-post-taglist post-filename)
-   "</a>"
-   "</div>"
-   "</div>"
-   "<div class=\"post-date\">" "~ Posted on: "
+   "</div>\n"
+   "</div>\n"
+   "<div class=\"post-date\">\n" "~ Posted on: "
    (format-time-string
     (org-static-blog-gettext
      'date-format)
@@ -104,13 +105,13 @@ followed by the HTML code for comments."
                     "</div>"))
           org-static-blog-post-postamble-text))
 
-
-
 (defun org-static-blog-assemble-archive ()
   "Re-render the blog archive page.
 The archive page contains single-line links and dates for every
 blog post, but no post body."
-  (let ((archive-filename (concat-to-dir org-static-blog-publish-directory org-static-blog-archive-file))
+  (let ((archive-filename (concat-to-dir
+                           org-static-blog-publish-directory
+                           org-static-blog-archive-file))
         (archive-entries nil)
         (post-filenames (org-static-blog-get-post-filenames)))
     (setq post-filenames (sort post-filenames (lambda (x y) (time-less-p
@@ -121,23 +122,109 @@ blog post, but no post body."
      (org-static-blog-template
       org-static-blog-publish-title
       (concat
-       "<h1 class=\"title\">" (org-static-blog-gettext 'archive) "</h1>\n"
-       "<ul>"
-       (apply 'concat (mapcar 'org-static-blog-get-post-summary post-filenames))
-       "</ul>"
-       )))))
+       "<ul>\n"
+       (apply 'concat (mapcar 'org-static-blog-get-post-summary
+                              post-filenames))
+       "</ul>\n")))))
 
-(defun org-static-blog-get-post-summary (post-filename)
+(defun org-static-blog-get-post-summary (post-filename &optional
+                                                       no-tags)
   "Assemble post summary for an archive page.
 This function is called for every post on the archive and
 tags-archive page. Modify this function if you want to change an
 archive headline."
-  (concat
-   "<div class=\"post-date\">"
-   (format-time-string (org-static-blog-gettext 'date-format) (org-static-blog-get-date post-filename))
-   "</div>"
-   "<li class=\"post-title\">"
-   "<a href=\"" (org-static-blog-get-post-url post-filename) "\">" (org-static-blog-get-title post-filename) "</a>"
-   "</li>\n"))
+  (let ((taglist (org-static-blog-post-taglist post-filename)))
+    (concat
+     "<li>\n"
+     "<span class=\"post-date\">\n"
+     (format-time-string (org-static-blog-gettext 'date-format)
+                         (org-static-blog-get-date post-filename))
+     "</span>"
+     " ~ <a class=\"post-title-inline\" href=\"" (org-static-blog-get-post-url
+                                                  post-filename) "\">"
+     (org-static-blog-get-title
+      post-filename)
+     "</a>\n"
+     (unless no-tags
+       (when (and taglist (not (string-empty-p taglist)))
+         (concat
+          "~"
+          "<span class=\"taglist\">"
+          taglist
+          "</span>")))
+     "</li>\n")))
+
+(defun org-static-blog-post-taglist (post-filename)
+  "Returns the tag list of the post.
+This part will be attached at the end of the post, after
+the taglist, in a <div id=\"taglist\">...</div> block."
+  (let ((taglist-content "")
+        (tags
+         (remove org-static-blog-no-comments-tag
+                 (remove org-static-blog-rss-excluded-tag
+                         (org-static-blog-get-tags post-filename)))))
+    (when (and tags org-static-blog-enable-tags)
+      (setq taglist-content
+            (mapconcat (lambda (tag)
+                         (concat "\n<a href=\""
+                                 (org-static-blog-get-absolute-url (concat "tags.html#" (downcase tag)))
+                                 "\">" tag "</a>"))
+                       tags "")))
+    taglist-content))
+
+(defun org-static-blog-assemble-tags ()
+  "Render the tag archive and tag pages."
+  (org-static-blog-assemble-tags-archive))
+
+(defun org-static-blog-assemble-tags-archive ()
+  "Assemble the blog tag archive page.
+The archive page contains single-line links and dates for every
+blog post, sorted by tags, but no post body."
+  (let ((tags-archive-filename (concat-to-dir
+                                org-static-blog-publish-directory
+                                org-static-blog-tags-file))
+        (tag-tree (org-static-blog-get-tag-tree)))
+    (setq tag-tree (sort tag-tree (lambda (x y) (string-greaterp (car y) (car x)))))
+    (org-static-blog-with-find-file
+     tags-archive-filename
+     (org-static-blog-template
+      org-static-blog-publish-title
+      (concat
+       (apply 'concat (mapcar
+                       'org-static-blog-assemble-tags-archive-tag
+                       tag-tree)))))))
+
+(defun org-static-blog-assemble-tags-archive-tag (tag)
+  "Assemble single TAG for all filenames."
+  (let ((post-filenames (cdr tag)))
+    (setq post-filenames
+          (sort post-filenames (lambda (x y) (time-less-p (org-static-blog-get-date x)
+                                                          (org-static-blog-get-date y)))))
+    (concat "<li>" "<span class=\"tag-title\" id=\"" (downcase (car
+                                                                tag))
+            "\">" (downcase (car tag))
+            "</span>\n<ul>\n"
+            (apply 'concat (mapcar '(lambda (post-filenames)
+                                      (org-static-blog-get-post-summary
+                                       post-filenames 'no-tags))
+                                   post-filenames))"</ul>\n</li>")))
+
+(defun org-static-blog-assemble-multipost-page (pub-filename
+                                                post-filenames &optional front-matter)
+  "Assemble a page that contains multiple posts one after another.
+Posts are sorted in descending time."
+  (setq post-filenames (sort post-filenames (lambda (x y) (time-less-p (org-static-blog-get-date y)
+                                                                       (org-static-blog-get-date x)))))
+  (org-static-blog-with-find-file
+   pub-filename
+   (org-static-blog-template
+    org-static-blog-publish-title
+    (concat
+     (when front-matter front-matter)
+     (apply 'concat (mapcar
+                     (if org-static-blog-use-preview
+                         'org-static-blog-get-preview
+                       'org-static-blog-get-post-content)
+                     post-filenames))))))
 
 (org-static-blog-publish t)

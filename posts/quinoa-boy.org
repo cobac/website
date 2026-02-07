@@ -1,6 +1,6 @@
 #+title: rip quinoa boy
 #+date: <2026-02-07 Sat>
-#+filetags: food
+#+filetags: food tag4
 
 Last year (2025) David Lynch passed away. There is a funny [[https://www.youtube.com/watch?v=uSP-ewdJYJc][video]] of him "explaining" a quinoa recipe, and in his honor I decided to explore cooking with this grain that I hadn't used a lot before.
 

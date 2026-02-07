@@ -2,7 +2,7 @@
 #+date: <2026-02-07 Sat>
 #+filetags:
 
-- I'm recently into spinach.
+- I'm recently into *spinach*.
   - Boiled for ~20s on salted water.
   - Chilled on cold water.
-  - And then tossed around in a quick sauce made of garlic, ginger and miso fried on some fat, before deglazing with mirin and lemon juice.
+  - And then tossed around in a quick sauce made by frying *garlic*, *ginger* and *miso* in some *fat*, and deglazing the pan with *mirin* and *lemon* juice.
