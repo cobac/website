@@ -36,7 +36,7 @@ html {
     scroll-behavior: smooth;
 }
 
-html ::selection {
+::selection {
     color: var(--bg);
     background: var(--accent-chill);
 }
@@ -104,25 +104,35 @@ body footer {
     font-size: 0.9rem;
 }
 
+body footer a::after {
+    content:"";
+    color:var(--accent);
+}
+
+body header a::after {
+    content:"";
+    color:var(--accent);
+}
+
 main h1 {
-    font-size: 2.6rem;
-    font-variant: small-caps;
-    letter-spacing: 0.08em;
+    font-size: 2rem;
+    /* font-variant: small-caps; */
+    /* letter-spacing: 0.08em; */
     margin-top: 3rem;
     margin-bottom: 3rem;
 }
 main h2 {
-    font-size: 2rem;
+    font-size: 1.44rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
-    font-variant: small-caps;
-    letter-spacing: 0.05em;
+    /* font-variant: small-caps; */
+    /* letter-spacing: 0.05em; */
 }
-main h3 { font-size: 1.44rem;
+main h3 { font-size: 1.15rem;
           margin-top: 2rem;
           margin-bottom: 2rem;
         }
-main h4 { font-size: 1.15rem; }
+main h4 { font-size: 0.96rem; }
 main h5 { font-size: 0.96rem; }
 main h6 { font-size: 0.96rem; }
 
@@ -136,28 +146,28 @@ h1, h2, h3 {
     line-height: 1.1;
 }
 
-@media only screen and (max-width: 720px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2.1rem; }
-    h3 { font-size: 1.75rem; }
-    h4 { font-size: 1.25rem; }
-}
-
-a, a:visited {
+a {
     color: var(--text);
-    /* font-weight: bold; */
+    font-weight: bold;
     display: inline-block;
     text-decoration-line: none;
+    /* user-select: all; */
     /* font-variant: small-caps; */
     /* letter-spacing: 0.05em; */
 
 }
 
 
-a::after, a::before{
+a::after {
     content:"~";
-    color:var(--accent-chill);
+    color:var(--accent);
 }
+
+
+/* a::selection { */
+/*     color: var(--bg); */
+/*     background: var(--accent-chill); */
+/* } */
 
 a:hover {
     text-decoration-line: none;
@@ -240,14 +250,6 @@ aside {
 
 *[dir="rtl"] aside {
     float: left;
-}
-
-@media only screen and (max-width: 720px) {
-    aside {
-        width: 100%;
-        float: none;
-        margin-inline-start: 0;
-    }
 }
 
 article, fieldset, dialog {
@@ -432,14 +434,6 @@ input[type="radio"]:checked::after {
     font-size: 1.8em;
 }
 
-@media only screen and (max-width: 720px) {
-    textarea,
-    select,
-    input {
-        width: 100%;
-    }
-}
-
 input[type="color"] {
     height: 2.5rem;
     padding: 0.2rem;
@@ -579,12 +573,6 @@ dialog {
 dialog::backdrop {
     background-color: var(--bg);
     opacity: 0.8;
-}
-
-@media only screen and (max-width: 720px) {
-    dialog {
-        max-width: calc(100vw - 2rem);
-    }
 }
 
 sup, sub {
