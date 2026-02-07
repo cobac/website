@@ -1,0 +1,16 @@
+#+title: dbt in five minutes
+#+date: <2026-02-07 Sat>
+#+filetags: data another_tag
+
+dbt is a tool that does things
+
+
+#+BEGIN_SRC sql
+select * from {{ ref("stg_customers") }}
+#+END_SRC
+
+
+* one star
+laksdj falksdjf
+
+** two stars
