@@ -2,6 +2,13 @@
 (load (expand-file-name "org-static-blog.el" (file-name-directory
                                               load-file-name)))
 
+
+(load (expand-file-name "htmlize.el" (file-name-directory
+                                      load-file-name)))
+(setq org-html-htmlize-output-type 'css
+      org-html-htmlize-font-prefix "htmlize-"
+      org-html-head-include-default-style nil)
+
 (defun coba-file-content-as-string (filename)
   "Return the contents of FILENAME as string.
     https://gist.github.com/bigodel/56a4627afdfe9ad28f6dcc68b89a97f8"

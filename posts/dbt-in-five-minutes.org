@@ -1,12 +1,12 @@
-#+title: dbt in five minutes and more minutes and more minutes and more minutes and more
-#+date: <2026-02-07 Sat>
-#+filetags: data another_tag food tag1 tag2 tag3 tag4 tag5 tag6 tag7 tag8
+#+title: dbt in five minutes
+#+date: <2026-02-11 Wed>
+#+filetags: data
 
 dbt is a tool that does things
 
 
 #+BEGIN_SRC sql
-select * from {{ ref("stg_customers") }}
+select min(column) from {{ ref("stg_customers") }}
 #+END_SRC
 
 
