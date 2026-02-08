@@ -4,6 +4,9 @@
 
 dbt is a framework to engineer data transformation pipelines.
 
+1. You write /declarative/ select statements that dbt compiles into whatever
+2. runs stuff in the correct order
+
 #+BEGIN_SRC sql
 -- /models/marts/current_customers.sql
 
