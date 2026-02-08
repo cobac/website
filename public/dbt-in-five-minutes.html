@@ -36,24 +36,48 @@
 </div>
 <div class="post-date">
 ~ Posted on: 2026-02-11</div><p>
-dbt is a tool that does things
+dbt is a framework to engineer data transformation pipelines.
 </p>
-
 
 <div class="org-src-container">
-<pre class="src src-sql"><span class="htmlize-keyword">select</span> <span class="htmlize-builtin">min</span>(<span class="htmlize-keyword">column</span>) <span class="htmlize-keyword">from</span> {{ <span class="htmlize-type">ref</span>("stg_customers") }}
+<pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/models/marts/current_customers.sql
+</span>
+<span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
+    <span class="htmlize-keyword">select</span> *
+    <span class="htmlize-keyword">from</span> {{ <span class="htmlize-type">ref</span>("stg_erp__customers") }})
+
+<span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
+<span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
 </pre>
 </div>
-<div id="outline-container-orge71ec05" class="outline-2">
-<h2 id="orge71ec05">one star</h2>
-<div class="outline-text-2" id="text-orge71ec05">
+
 <p>
-laksdj falksdjf
+When <code>target = 'dev'</code>  or <code>target = 'ci'</code>.
 </p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/target/run/dbt_project/models/marts/current_customers.sql
+</span>
+<span class="htmlize-keyword">create</span> <span class="htmlize-keyword">or</span> replace <span class="htmlize-keyword">table</span> "database"."marts"."current_customers" <span class="htmlize-keyword">as</span>
+<span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "user_dev"."coba"."current_customers"
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "ci_tmp__run:uuid"."marts"."current_customers"
+</span>
+<span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
+    <span class="htmlize-keyword">select</span> *
+    <span class="htmlize-keyword">from</span> "database"."staging"."stg_erp__customers")
+<span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "user_dev"."coba"."stg_erp__customers")
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "ci_tmp__run:uuid"."staging"."stg_erp__customers")
+</span>
+<span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
+<span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
+</pre>
 </div>
-<div id="outline-container-org8b768f8" class="outline-3">
-<h3 id="org8b768f8">two stars</h3>
-</div>
+
+<div class="org-src-container">
+<pre class="src src-plain">┌───────────────────────┐    ┌────────────────────┐    ┌───────────────────┐
+│ source:erp__customers │---&gt;│ stg_erp__customers │---&gt;│ current_customers │
+└───────────────────────┘    └────────────────────┘    └───────────────────┘
+</pre>
 </div>
 </div>
 <div id="postamble" class="status"><footer>

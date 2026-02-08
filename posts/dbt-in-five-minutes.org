@@ -2,15 +2,40 @@
 #+date: <2026-02-11 Wed>
 #+filetags: data
 
-dbt is a tool that does things
-
+dbt is a framework to engineer data transformation pipelines.
 
 #+BEGIN_SRC sql
-select min(column) from {{ ref("stg_customers") }}
+-- /models/marts/current_customers.sql
+
+with stg_customers as (
+    select *
+    from {{ ref("stg_erp__customers") }})
+
+select * from stg_customers
+where status = 'active'
 #+END_SRC
 
+When ~target = 'dev'~  or ~target = 'ci'~.
 
-* one star
-laksdj falksdjf
+#+BEGIN_SRC sql
+-- /target/run/dbt_project/models/marts/current_customers.sql
 
-** two stars
+create or replace table "database"."marts"."current_customers" as
+-- or                   "user_dev"."coba"."current_customers"
+-- or                   "ci_tmp__run:uuid"."marts"."current_customers"
+
+with stg_customers as (
+    select *
+    from "database"."staging"."stg_erp__customers")
+-- or     "user_dev"."coba"."stg_erp__customers")
+-- or     "ci_tmp__run:uuid"."staging"."stg_erp__customers")
+
+select * from stg_customers
+where status = 'active'
+#+END_SRC
+
+#+BEGIN_SRC plain
+┌───────────────────────┐    ┌────────────────────┐    ┌───────────────────┐
+│ source:erp__customers │--->│ stg_erp__customers │--->│ current_customers │
+└───────────────────────┘    └────────────────────┘    └───────────────────┘
+#+END_SRC
