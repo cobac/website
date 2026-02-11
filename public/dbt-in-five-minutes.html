@@ -36,13 +36,19 @@
 </div>
 <div class="post-date">
 ~ Posted on: 2026-02-11</div><p>
-dbt is a framework to engineer data transformation pipelines.
+dbt is a framework to engineer data transformation pipelines. It scaffolds the process implementing software engineering practices like version control, CI/CD, automated testing and deployment environments.
 </p>
 
-<ol class="org-ol">
-<li>You write <i>declarative</i> select statements that dbt compiles into whatever</li>
-<li>runs stuff in the correct order</li>
-</ol>
+<p>
+dbt is not a very magical framework, and most of its features are implemented by two processes:
+</p>
+
+<div id="outline-container-org33435c2" class="outline-2">
+<h2 id="org33435c2">1. You write <i>declarative</i> select statements that dbt compiles into full SQL statements.</h2>
+<div class="outline-text-2" id="text-org33435c2">
+<p>
+Each model is a combination of declarative SQL and expressions from a templating engine called jinja (things within <code>{{ }}</code>).
+</p>
 
 <div class="org-src-container">
 <pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/models/marts/current_customers.sql
@@ -57,32 +63,59 @@ dbt is a framework to engineer data transformation pipelines.
 </div>
 
 <p>
-When <code>target = 'dev'</code>  or <code>target = 'ci'</code>.
+dbt will compile your project into SQL statements that modify the state of your data warehouse. E.g. different outputs based on the values of the <code>target</code> variable:  <code>target = prod</code>, <code>target = 'dev'</code>  or <code>target = 'ci'</code>.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/target/run/dbt_project/models/marts/current_customers.sql
 </span>
-<span class="htmlize-keyword">create</span> <span class="htmlize-keyword">or</span> replace <span class="htmlize-keyword">table</span> "database"."marts"."current_customers" <span class="htmlize-keyword">as</span>
+<span class="htmlize-keyword">create</span> <span class="htmlize-keyword">or</span> replace <span class="htmlize-keyword">table</span> "production"."marts"."current_customers" <span class="htmlize-keyword">as</span>
 <span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "user_dev"."coba"."current_customers"
-</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "ci_tmp__run:uuid"."marts"."current_customers"
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "ci_tmp__run_uuid"."marts"."current_customers"
 </span>
 <span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
     <span class="htmlize-keyword">select</span> *
-    <span class="htmlize-keyword">from</span> "database"."staging"."stg_erp__customers")
+    <span class="htmlize-keyword">from</span> "production"."staging"."stg_erp__customers")
 <span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "user_dev"."coba"."stg_erp__customers")
-</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "ci_tmp__run:uuid"."staging"."stg_erp__customers")
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "ci_tmp__run_uuid"."staging"."stg_erp__customers")
 </span>
 <span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
 <span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
 </pre>
 </div>
+</div>
+</div>
+
+<div id="outline-container-orge1def95" class="outline-2">
+<h2 id="orge1def95">2. dbt runs those statements in the correct order</h2>
+<div class="outline-text-2" id="text-orge1def95">
+<p>
+dbt constructs a DAG of all the relations in your project, so it knows that it needs to wait for the <code>stg_erp__customers</code> model to finish building before running the <code>current_customers</code> model.
+</p>
+
 
 <div class="org-src-container">
 <pre class="src src-plain">┌───────────────────────┐    ┌────────────────────┐    ┌───────────────────┐
 │ source:erp__customers │---&gt;│ stg_erp__customers │---&gt;│ current_customers │
 └───────────────────────┘    └────────────────────┘    └───────────────────┘
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaaa3289" class="outline-2">
+<h2 id="orgaaa3289">3. Not much else</h2>
+<div class="outline-text-2" id="text-orgaaa3289">
+<ul class="org-ul">
+<li>dbt is not a compute engine, it just sends SQL queries to the underlying data platform.</li>
+<li>dbt is not an ingestion or BI tool, it just orchestrates data transformations.</li>
+<li>dbt doesn't understand your SQL. If your SQL contains syntax error dbt will try to run the incorrect SQL and surface to you the error produced by the database.</li>
+<li>There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order.
+<ul class="org-ul">
+<li>e.g. tests (assertion that runs after your models), documentation (<code>comment on</code> expressions).</li>
+</ul></li>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status"><footer>

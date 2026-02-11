@@ -2,10 +2,13 @@
 #+date: <2026-02-11 Wed>
 #+filetags: data
 
-dbt is a framework to engineer data transformation pipelines.
+dbt is a framework to engineer data transformation pipelines. It scaffolds the process implementing software engineering practices like version control, CI/CD, automated testing and deployment environments.
 
-1. You write /declarative/ select statements that dbt compiles into whatever
-2. runs stuff in the correct order
+dbt is not a very magical framework, and most of its features are implemented by two processes:
+
+** 1. You write /declarative/ select statements that dbt compiles into full SQL statements.
+
+Each model is a combination of declarative SQL and expressions from a templating engine called jinja (things within ={{ }}=).
 
 #+BEGIN_SRC sql
 -- /models/marts/current_customers.sql
@@ -18,27 +21,39 @@ select * from stg_customers
 where status = 'active'
 #+END_SRC
 
-When ~target = 'dev'~  or ~target = 'ci'~.
+dbt will compile your project into SQL statements that modify the state of your data warehouse. E.g. different outputs based on the values of the =target= variable:  ~target = prod~, ~target = 'dev'~  or ~target = 'ci'~.
 
 #+BEGIN_SRC sql
 -- /target/run/dbt_project/models/marts/current_customers.sql
 
-create or replace table "database"."marts"."current_customers" as
+create or replace table "production"."marts"."current_customers" as
 -- or                   "user_dev"."coba"."current_customers"
--- or                   "ci_tmp__run:uuid"."marts"."current_customers"
+-- or                   "ci_tmp__run_uuid"."marts"."current_customers"
 
 with stg_customers as (
     select *
-    from "database"."staging"."stg_erp__customers")
+    from "production"."staging"."stg_erp__customers")
 -- or     "user_dev"."coba"."stg_erp__customers")
--- or     "ci_tmp__run:uuid"."staging"."stg_erp__customers")
+-- or     "ci_tmp__run_uuid"."staging"."stg_erp__customers")
 
 select * from stg_customers
 where status = 'active'
 #+END_SRC
+
+** 2. dbt runs those statements in the correct order
+
+dbt constructs a DAG of all the relations in your project, so it knows that it needs to wait for the =stg_erp__customers= model to finish building before running the =current_customers= model.
+
 
 #+BEGIN_SRC plain
 ┌───────────────────────┐    ┌────────────────────┐    ┌───────────────────┐
 │ source:erp__customers │--->│ stg_erp__customers │--->│ current_customers │
 └───────────────────────┘    └────────────────────┘    └───────────────────┘
 #+END_SRC
+
+** 3. Not much else
+- dbt is not a compute engine, it just sends SQL queries to the underlying data platform.
+- dbt is not an ingestion or BI tool, it just orchestrates data transformations.
+- dbt doesn't understand your SQL. If your SQL contains syntax error dbt will try to run the incorrect SQL and surface to you the error produced by the database.
+- There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order.
+  - e.g. tests (assertion that runs after your models), documentation (=comment on= expressions).
