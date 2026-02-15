@@ -5,15 +5,15 @@
     --standard-border-radius: 5px;
     --border-witdth: 3px;
     --bg: #000000;
-    --fg: #ffffff;
+    --fg: #b9b8c7; /* https://www.colorhexa.com/c4c3d0 */
+    --fg-chill: #6e6c8a;
+    --code: var(--fg);
     --accent: #ffb300;
     --accent-chill: #ffe099;
     --accent-alt: #3772FF;
     --accent-alt-chill: #91A6FF;
     --accent-bg: #2b2b2b;
-    --code: #ffffff;
     --disabled: #111;
-    --fg-chill: #898EA4;
     --marked: #ffdd33;
 }
 
