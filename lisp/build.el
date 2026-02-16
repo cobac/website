@@ -1,10 +1,13 @@
 (setq make-backup-files nil)
 (load (expand-file-name "org-static-blog.el" (file-name-directory
                                               load-file-name)))
-
-
 (load (expand-file-name "htmlize.el" (file-name-directory
                                       load-file-name)))
+
+(load (expand-file-name "hacks.el" (file-name-directory
+                                    load-file-name)))
+(unpackaged/org-export-html-with-useful-ids-mode)
+
 (setq org-html-htmlize-output-type 'css
       org-html-htmlize-font-prefix "htmlize-"
       org-html-head-include-default-style nil)
