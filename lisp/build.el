@@ -237,4 +237,35 @@ Posts are sorted in descending time."
                        'org-static-blog-get-post-content)
                      post-filenames))))))
 
+
+;; patched with a default-directory to allow relative paths with babel outputs
+(defun org-static-blog-render-post-content (post-filename)
+  (let ((org-html-doctype "html5")
+        (org-html-html5-fancy t)
+        (post-filename-abs (expand-file-name post-filename)))
+    (save-excursion
+      (let ((current-buffer (current-buffer))
+            (buffer-exists (org-static-blog-file-buffer post-filename))
+            (result nil))
+        (with-temp-buffer
+          (if buffer-exists
+              (insert-buffer-substring buffer-exists)
+            (insert-file-contents post-filename-abs))
+          (setq default-directory (file-name-directory post-filename-abs))
+          (org-mode)
+          (goto-char (point-min))
+          (org-map-entries
+           (lambda ()
+             (setq org-map-continue-from (point))
+             (org-cut-subtree))
+           org-static-blog-no-post-tag)
+          (setq result
+                (org-export-as 'org-static-blog-post-bare nil nil nil nil))
+          (switch-to-buffer current-buffer)
+          result)))))
+
+(setopt org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((dot . t)))
+
 (org-static-blog-publish t)
