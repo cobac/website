@@ -3,9 +3,9 @@
                                               load-file-name)))
 (load (expand-file-name "htmlize.el" (file-name-directory
                                       load-file-name)))
-
 (load (expand-file-name "hacks.el" (file-name-directory
                                     load-file-name)))
+
 (unpackaged/org-export-html-with-useful-ids-mode)
 
 (setq org-html-htmlize-output-type 'css
@@ -90,12 +90,15 @@ Modify this function if you want to change a posts headline."
    (org-static-blog-post-taglist post-filename)
    "</div>\n"
    "</div>\n"
-   "<div class=\"post-date\">\n" "~ Posted on: "
-   (format-time-string
-    (org-static-blog-gettext
-     'date-format)
-    (org-static-blog-get-date
-     post-filename))
+   (when (org-static-blog-get-date
+          post-filename)
+     (concat
+      "<div class=\"post-date\">\n" "~ Posted on: "
+      (format-time-string
+       (org-static-blog-gettext
+        'date-format)
+       (org-static-blog-get-date
+        post-filename))))
    "</div>"))
 
 (defun org-static-blog-post-postamble (post-filename)
@@ -114,6 +117,16 @@ followed by the HTML code for comments."
                     org-static-blog-post-comments
                     "</div>"))
           org-static-blog-post-postamble-text))
+
+(defun org-static-blog-get-date (post-filename)
+  "Extract the `#+date:` from POST-FILENAME as date-time."
+  (let ((case-fold-search t))
+    (with-temp-buffer
+      (insert-file-contents post-filename)
+      (goto-char (point-min))
+      (if (search-forward-regexp
+           "^\\#\\+date:[ ]*[[<]?\\([^]>]+\\)[]>]?$" nil t)
+          (date-to-time (match-string 1))))))
 
 (defun org-static-blog-assemble-archive ()
   "Re-render the blog archive page.
@@ -237,7 +250,6 @@ Posts are sorted in descending time."
                        'org-static-blog-get-post-content)
                      post-filenames))))))
 
-
 ;; patched with a default-directory to allow relative paths with babel outputs
 (defun org-static-blog-render-post-content (post-filename)
   (let ((org-html-doctype "html5")
@@ -265,6 +277,7 @@ Posts are sorted in descending time."
           result)))))
 
 (setopt org-confirm-babel-evaluate nil)
+
 (org-babel-do-load-languages
  'org-babel-load-languages '((dot . t)))
 
