@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       a9293394-404f-4118-b002-db17c17a3a89
+:END:
+#+title: 404
+#+filetags:
+
+#+ATTR_HTML: :alt a misty pic of an urban park with a lake, there are some bridges crossing the lake
+#+ATTR_HTML: :width 60%
+[[../media/lago-nieblao.jpeg]]
