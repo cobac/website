@@ -3,6 +3,9 @@
 build:
 	rm -r public/*.html || true
 	emacs -Q --script lisp/build.el
+	mkdir -p public/media
+	cp -r media/* public/media/
+	perl -pi -e 's|\.\./media/|./media/|g' public/*.html
 
 fetch:
 	curl -o lisp/org-static-blog.el https://raw.githubusercontent.com/bastibe/org-static-blog/refs/heads/master/org-static-blog.el
