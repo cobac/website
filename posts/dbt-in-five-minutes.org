@@ -4,14 +4,15 @@
 
 dbt is a framework to engineer data transformation pipelines. It scaffolds the process implementing software engineering practices like version control, CI/CD, automated testing and deployment environments.
 
-dbt is not a very magical framework, and most of its features are implemented by two processes:
+dbt is not a very magical framework, and most of what it offers is implemented by two features:
 
-** 1. You write /declarative/ select statements that dbt compiles into full SQL statements.
+** 1. You write /declarative/ select statements that dbt compiles into complete SQL statements.
 
 Each model is a combination of declarative SQL and expressions from a templating engine called jinja (things within ={{ }}=).
 
 #+BEGIN_SRC sql
 -- /models/marts/current_customers.sql
+-- written by you
 
 with stg_customers as (
     select *
@@ -21,10 +22,11 @@ select * from stg_customers
 where status = 'active'
 #+END_SRC
 
-dbt will compile your project into SQL statements that modify the state of your data warehouse. E.g. different outputs based on the values of the =target= variable:  ~target = prod~, ~target = 'dev'~  or ~target = 'ci'~.
+dbt will compile your project into SQL statements that modify the state of your data warehouse like:
 
 #+BEGIN_SRC sql
 -- /target/run/dbt_project/models/marts/current_customers.sql
+-- produced by dbt
 
 create or replace table "production"."marts"."current_customers" as
 -- or                   "user_dev"."coba"."current_customers"
@@ -40,20 +42,34 @@ select * from stg_customers
 where status = 'active'
 #+END_SRC
 
-** 2. dbt runs those statements in the correct order
+** 2. dbt runs those statements in the correct order.
 
 dbt constructs a DAG of all the relations in your project, so it knows that it needs to wait for the =stg_erp__customers= model to finish building before running the =current_customers= model.
 
-
-#+BEGIN_SRC plain
-┌───────────────────────┐    ┌────────────────────┐    ┌───────────────────┐
-│ source:erp__customers │--->│ stg_erp__customers │--->│ current_customers │
-└───────────────────────┘    └────────────────────┘    └───────────────────┘
+#+BEGIN_SRC dot :exports results :file ../media/dbt-simple-dag.svg
+  digraph {
+      rankdir="LR";
+      bgcolor="black";
+      node [shape="box", color="#b9b8c7", fontcolor="#b9b8c7"];
+      graph [fontname = "IBM Plex Mono"];
+      node [fontname = "IBM Plex Mono"];
+      edge [fontname = "IBM Plex Mono",
+            color="#b9b8c7",
+            arrowhead="normal"];
+      src -> stg -> mart;
+      src[label="source:erp__customers"];
+      stg[label="stg_erp__customers"];
+      mart[label="current_customers"];
+  }
 #+END_SRC
 
-** 3. Not much else
-- dbt is not a compute engine, it just sends SQL queries to the underlying data platform.
+#+ATTR_HTML: :alt source:erp__customer -> stg_erp__customers -> current_customers
+#+RESULTS:
+[[file:../media/out.svg]]
+
+** 3. Not much else.
+- dbt is not a compute engine, all compute happens on the underlying data platform.
 - dbt is not an ingestion or BI tool, it just orchestrates data transformations.
-- dbt doesn't understand your SQL. If your SQL contains syntax error dbt will try to run the incorrect SQL and surface to you the error produced by the database.
+- dbt doesn't understand your SQL. If your SQL contains syntax errors, dbt will try to run the incorrect SQL and surface the error produced by the data platform.
 - There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order.
-  - e.g. tests (assertion that runs after your models), documentation (=comment on= expressions).
+  - e.g. [[https://docs.getdbt.com/docs/build/data-tests][tests]] (assertion that runs after your models), [[https://docs.getdbt.com/docs/build/documentation][documentation]] (=comment on= expressions), [[https://docs.getdbt.com/docs/build/incremental-models][incremental models]] (instead of rebuilding tables on each run, new data is appended/merged/X with the already existing data).
