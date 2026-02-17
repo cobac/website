@@ -43,6 +43,8 @@ made unique when necessary."
                         (when (org-element-property :raw-value datum)
                           ;; Heading with a title
                           (unpackaged/org-export-new-title-reference datum cache))
+                        ;; custom -- try to get a static reference for other elements
+                        (unpackaged/org-export-new-element-reference datum cache)
                         ;; NOTE: This probably breaks some Org Export
                         ;; feature, but if it does what I need, fine.
                         (org-export-format-reference
@@ -58,6 +60,28 @@ made unique when necessary."
           (push (cons reference-string datum) cache)
           (plist-put info :internal-references cache)
           reference-string))))
+
+;; custom
+(defun unpackaged/org-export-new-element-reference (datum cache)
+  "Return a static reference for figures. Returns nil for other elements."
+  (let* ((type (org-element-type datum))
+         (base-ref
+          (when (eq type 'paragraph)
+            (let ((link (org-element-map datum 'link #'identity nil t)))
+              (when link
+                (let ((path (org-element-property :path link)))
+                  (when path
+                    (concat "fig-" (file-name-base path)))))))))
+    (when base-ref
+      (let ((ref (url-hexify-string (substring-no-properties base-ref))))
+        ;; Make unique if needed
+        (while (--any (equal ref (car it)) cache)
+          (if (string-match (rx bos (group (1+ anything)) "--" (group (1+ digit)) eos) ref)
+              (setf ref (format "%s--%s"
+                                (match-string 1 ref)
+                                (1+ (string-to-number (match-string 2 ref)))))
+            (setf ref (concat ref "--1"))))
+        ref))))
 
 (defun unpackaged/org-export-new-title-reference (datum cache)
   "Return new reference for DATUM that is unique in CACHE."
