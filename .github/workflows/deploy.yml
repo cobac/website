@@ -21,4 +21,4 @@ jobs:
           local_path: './public/*'
           remote_path: '/public_html'
           args: '-o ConnectTimeout=5'
-          sftp_only: true
+          sftp_only: false
