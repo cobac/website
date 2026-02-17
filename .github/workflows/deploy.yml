@@ -18,4 +18,3 @@ jobs:
           remote_path: '/public_html'
           args: '-o ConnectTimeout=5'
           sftp_only: true
-          delete_remote_files: true
