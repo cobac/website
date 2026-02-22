@@ -138,6 +138,11 @@ body header a::after {
 
 p { margin: 1.5rem 0; }
 
+/* ::marker { */
+/*     color: var(--fg-accent); */
+/*     font-weight: bold; */
+/* } */
+
 p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
