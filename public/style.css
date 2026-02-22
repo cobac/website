@@ -118,7 +118,37 @@ body header a::after {
 #content h1 {
     font-size: 2rem;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+}
+
+.title-with-tags {
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+}
+
+.taglist, .taglist a{
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: var(--fg-chill);
+    flex-grow: 0;
+    text-align: left;
+    vertical-align: center;
+    /* overflow-wrap: break-word; */
+    word-wrap: break-word;
+}
+.taglist a::after {
+    content:", ";
+    color: var(--fg-chill);
+}
+.taglist a:last-child::after {content:"";}
+
+a.post-title-inline::after{content:"";}
+
+.tag-title {
+    font-family: var(--mono-font);
+    font-weight: bold;
 }
 #content h2 {
     font-size: 1.44rem;
@@ -645,35 +675,10 @@ h1.post-title a::after {content:"";}
     font-family: var(--mono-font);
     color: var(--fg-chill);
     font-size: 0.85rem;
-    margin-top: -1rem;
+    margin-top: 0rem;
     margin-bottom: 1rem;
 }
 
-.title-with-tags {display:flex; align-items: center; flex-wrap: wrap;}
-
-.taglist, .taglist a{
-    font-family: var(--mono-font);
-    font-size: 0.85rem;
-    font-weight: normal;
-    color: var(--fg-chill);
-    flex-grow: 0;
-    text-align: left;
-    vertical-align: center;
-    /* overflow-wrap: break-word; */
-    word-wrap: break-word;
-}
-.taglist a::after {
-    content:", ";
-    color: var(--fg-chill);
-}
-.taglist a:last-child::after {content:"";}
-
-a.post-title-inline::after{content:"";}
-
-.tag-title {
-    font-family: var(--mono-font);
-    font-weight: bold;
-}
 
 b {
     color: var(--fg-accent);
