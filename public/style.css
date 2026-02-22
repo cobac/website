@@ -123,7 +123,7 @@ body header a::after {
 #content h2 {
     font-size: 1.44rem;
     margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     /* font-variant: small-caps; */
     /* letter-spacing: 0.05em; */
 }
@@ -645,7 +645,8 @@ h1.post-title a::after {content:"";}
     font-family: var(--mono-font);
     color: var(--fg-chill);
     font-size: 0.85rem;
-    margin-top: 1rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
 }
 
 .title-with-tags {display:flex; align-items: center; flex-wrap: wrap;}
