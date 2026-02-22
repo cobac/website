@@ -2,8 +2,9 @@
 
 build:
 	rm -r public/*.html || true
-	emacs -Q --script lisp/build.el
+	rm -r public/media || true
 	mkdir -p public/media
+	emacs -Q --script lisp/build.el
 	cp -r media/* public/media/
 	perl -pi -e 's|\.\./media/|./media/|g' public/*.html
 
