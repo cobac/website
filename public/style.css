@@ -638,6 +638,7 @@ h1.post-title a::after {content:"";}
 
 .post-date {
     font-family: var(--mono-font);
+    color: var(--fg-chill);
     font-size: 0.85rem;
     margin-top: 1rem;
 }

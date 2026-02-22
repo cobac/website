@@ -93,7 +93,7 @@ Modify this function if you want to change a posts headline."
    (when (org-static-blog-get-date
           post-filename)
      (concat
-      "<div class=\"post-date\">\n" "~ Posted on: "
+      "<div class=\"post-date\">\n" "~ Last updated on: "
       (format-time-string
        (org-static-blog-gettext
         'date-format)
