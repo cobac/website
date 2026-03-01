@@ -692,3 +692,7 @@ h1.post-title a::after {content:"";}
 b, h1, h2, h3 {
     color: var(--fg-accent);
 }
+
+#content  li {
+    margin-top: .5rem;
+}
