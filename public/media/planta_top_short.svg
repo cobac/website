@@ -28,13 +28,13 @@
      inkscape:document-units="mm"
      showborder="false"
      inkscape:antialias-rendering="true"
-     inkscape:zoom="1.0147669"
-     inkscape:cx="236.01479"
-     inkscape:cy="434.58256"
+     inkscape:zoom="1.2835989"
+     inkscape:cx="343.17574"
+     inkscape:cy="419.52358"
      inkscape:window-width="1920"
-     inkscape:window-height="1051"
+     inkscape:window-height="1080"
      inkscape:window-x="0"
-     inkscape:window-y="29"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1" /><defs
      id="defs1"><rect
@@ -2474,7 +2474,7 @@
        id="tspan21"
        style="stroke-width:0.3;stroke-dasharray:none"
        x="86.128403"
-       y="104.77204">Bathroom</tspan></text><text
+       y="104.77204">bathroom</tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:3.175px;font-family:'IBM Plex Mono';-inkscape-font-specification:'IBM Plex Mono Thin';writing-mode:lr-tb;direction:ltr;fill:none;fill-opacity:0.444388;stroke:#808080;stroke-width:0.3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      x="67.499992"
@@ -2484,7 +2484,7 @@
        id="tspan22"
        style="stroke-width:0.3;stroke-dasharray:none"
        x="67.499992"
-       y="136.57521">Bedroom</tspan></text><text
+       y="136.57521">bedroom</tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:3.175px;font-family:'IBM Plex Mono';-inkscape-font-specification:'IBM Plex Mono Thin';writing-mode:lr-tb;direction:ltr;fill:none;fill-opacity:0.444388;stroke:#808080;stroke-width:0.3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      x="61.386082"
@@ -2494,7 +2494,7 @@
        id="tspan23"
        style="stroke-width:0.3;stroke-dasharray:none"
        x="61.386082"
-       y="65.041481">Office / Studio</tspan><tspan
+       y="65.041481">office / Studio</tspan><tspan
        sodipodi:role="line"
        style="stroke-width:0.3;stroke-dasharray:none"
        x="61.386082"
@@ -2509,7 +2509,7 @@
        id="tspan25"
        style="stroke-width:0.1;stroke-dasharray:none"
        x="62.433094"
-       y="69.211281">High sound insulation</tspan></text><text
+       y="69.211281">gigh sound insulation</tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:2.11667px;font-family:'IBM Plex Mono';-inkscape-font-specification:'IBM Plex Mono Thin';writing-mode:lr-tb;direction:ltr;fill:none;fill-opacity:0.444388;stroke:#808080;stroke-width:0.1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      x="82.101036"
@@ -2519,7 +2519,7 @@
        id="tspan25-5"
        style="stroke-width:0.1;stroke-dasharray:none"
        x="82.101036"
-       y="109.41798">Plumbing possible?</tspan></text><text
+       y="109.41798">plumbing possible?</tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:3.175px;font-family:'IBM Plex Mono';-inkscape-font-specification:'IBM Plex Mono Thin';writing-mode:lr-tb;direction:ltr;fill:none;fill-opacity:0.444388;stroke:#808080;stroke-width:0.3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      x="51.806885"
@@ -2549,7 +2549,7 @@
        id="tspan14-5"
        style="stroke:#808080;stroke-width:0.3;stroke-dasharray:none"
        x="111.69975"
-       y="109.43098">How many</tspan><tspan
+       y="109.43098">how many</tspan><tspan
        sodipodi:role="line"
        style="stroke:#808080;stroke-width:0.3;stroke-dasharray:none"
        x="111.69975"
@@ -2581,7 +2581,7 @@
        id="tspan25-9"
        style="stroke-width:0.1;stroke-dasharray:none"
        x="63.732563"
-       y="172.29868">Balcony I don't want</tspan></text><text
+       y="172.29868">balcony I don't want</tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:2.11667px;font-family:'IBM Plex Mono';-inkscape-font-specification:'IBM Plex Mono Thin';writing-mode:lr-tb;direction:ltr;fill:none;fill-opacity:0.444388;stroke:#808080;stroke-width:0.1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      x="50.93737"
@@ -2600,11 +2600,11 @@
      transform="translate(4.693196,-1.3036656)"><tspan
        x="81.82431"
        y="117.80595"
-       id="tspan2">skyliight 
+       id="tspan1">skyliight 
 </tspan><tspan
        x="81.82431"
        y="120.45178"
-       id="tspan3">if no side </tspan><tspan
+       id="tspan5">if no side </tspan><tspan
        x="81.82431"
        y="123.09762"
-       id="tspan4">window</tspan></text></svg>
+       id="tspan6">window</tspan></text></svg>
