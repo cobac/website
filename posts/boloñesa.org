@@ -1,0 +1,23 @@
+#+title: boloñesa
+#+date: <2026-03-08 Sun>
+#+filetags: food
+
+Some friends asked for a recipe of my ragù alla bolognese, which is quite default and I don't do anything too creative about it. The things that make a difference: buying nice quality minced meat, buying tomatoes that taste like something and making sure to fry before boiling the meat.
+
+Ingredients:
+- 1.5kg minced meat, not too fatty, half pork half beef.
+- 2kg of tomatoes. If you don't have access to fresh tomatoes grown until ripe on the plant, the best bet are canned tomatoes from a nice brand, like anything with a San Marzano DOP. And tomato paste.
+- Mirepoix: a sensible amount of carrots, celery and onion. And garlic.
+- Red wine that you'd drink.
+- Herbs.
+
+On a +7L pot:
+- Add the *mince* in fistfuls into highish heat, letting each portion cook, release and evaporate its water content, and fry and develop some color. If all the mince is added together, the pot cannot transmit enough heat to evaporate water as it's released; and it the meat boils into grey chunks, instead of frying into dark brown crumble.
+  - If there's time pressure, you can use a second pan to brown the meat faster in parallel.
+- Add the *mirepoix*, the *garlic* and the *tomato paste*, and let it cook until translucentish and the tomato paste starts sticking to the bottom of the pot.
+- Add ~0.5L of *red wine*, stir to scrub clean the bottom of the pot, and let it cook for a bit.
+- Add the *tomatoes*. If they are fresh take the woody bits out (and peel them if you don't want to notice the skin cannoli).
+- Add *herbs*, parsley rosemary thyme oregano basil, black pepper chilly.
+- Once it boils reduce to low heat and let it cook for a few hours until it's reduced to the consistency you want. Stir semi frequently, don't let the bottom burn.
+
+Bolognese in the fridge, bolognese in the freezer. Bolognese in lasagna with almond-milk bechamel.
