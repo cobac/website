@@ -6,10 +6,10 @@
       type="application/rss+xml"
       href="./rss.xml"
       title="RSS feed for .">
-<title>dbt in five minutes</title>
-<meta property="og:title" content="dbt in five minutes">
+<title>what dbt does</title>
+<meta property="og:title" content="what dbt does">
 <meta property="og:type" content="article" />
-<meta property="og:url" content="./dbt-in-five-minutes.html">
+<meta property="og:url" content="./what-dbt-does.html">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coba</title>
@@ -29,14 +29,22 @@
 </div>
 <div id="content">
 <div class="title-with-tags">
-<h1 class="post-title"><a href="./dbt-in-five-minutes.html">dbt in five minutes</a></h1>
+<h1 class="post-title"><a href="./what-dbt-does.html">what dbt does</a></h1>
 <div class="taglist">
 
 <a href="./tags.html#data">data</a></div>
 </div>
 <div class="post-date">
 ~ 2026-02-11</div><p>
-dbt is a framework to engineer data transformation pipelines. It scaffolds the process implementing software engineering practices like version control, CI/CD, automated testing and deployment environments.
+Before, I used to work as a data/analytics engineer <a href="https://xebia.com">consultant</a>, where I got a lot of experience using dbt: it was a core component of the data platforms I built, and I helped dozens of clients of all sizes setting up dbt deployments while acting as a subcontracted onboarding partner to dbt Labs.
+</p>
+
+<p>
+Now, I'm working for a data <a href="https://motherduck.com">startup</a>, where dbt is one of the main ways our customers interact with our product. I originally wrote this post as a presentation for my customer-facing colleagues, to share a clear mental model of what dbt does, so that we can support our customers using dbt as best as possible.
+</p>
+
+<p>
+dbt is a framework to engineer data transformation pipelines. It scaffolds the process of implementing software engineering practices like version control, CI/CD, automated testing and deployment environments.
 </p>
 
 <p>
@@ -63,7 +71,7 @@ Each model is a combination of declarative SQL and expressions from a templating
 </div>
 
 <p>
-dbt will compile your project into SQL statements that modify the state of your data warehouse like:
+dbt will compile your project into SQL statements that modify the state of your data warehouse. Like:
 </p>
 
 <div class="org-src-container">
@@ -77,13 +85,17 @@ dbt will compile your project into SQL statements that modify the state of your 
 <span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
     <span class="htmlize-keyword">select</span> *
     <span class="htmlize-keyword">from</span> "production"."staging"."stg_erp__customers")
-<span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "user_dev"."coba"."stg_erp__customers")
-</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or     "ci_tmp__run_uuid"."staging"."stg_erp__customers")
+<span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or    "user_dev"."coba"."stg_erp__customers")
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or    "ci_tmp__run_uuid"."staging"."stg_erp__customers")
 </span>
 <span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
 <span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
 </pre>
 </div>
+
+<p>
+The same version-controlled source code gets compiled to different SQL statements depending on the environment (e.g. prod, personal dev environment, ephemeral CI run) that runs the dbt project.
+</p>
 </div>
 </div>
 <div id="outline-container-2.%20dbt%20runs%20those%20statements%20in%20the%20correct%20order." class="outline-2">
@@ -106,10 +118,12 @@ dbt constructs a DAG of all the relations in your project, so it knows that it n
 <ul class="org-ul">
 <li>dbt is not a compute engine, all compute happens on the underlying data platform.</li>
 <li>dbt is not an ingestion or BI tool, it just orchestrates data transformations.</li>
-<li>dbt doesn't understand your SQL. If your SQL contains syntax errors, dbt will try to run the incorrect SQL and surface the error produced by the data platform.</li>
-<li>There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order.
+<li>dbt doesn't understand your SQL (..<a href="https://docs.getdbt.com/docs/fusion">yet</a>). If your SQL contains syntax errors, dbt will try to run the incorrect SQL and surface the error produced by the data platform.</li>
+<li>There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order. E.g.:
 <ul class="org-ul">
-<li>e.g. <a href="https://docs.getdbt.com/docs/build/data-tests">tests</a> (assertion that runs after your models), <a href="https://docs.getdbt.com/docs/build/documentation">documentation</a> (<code>comment on</code> expressions), <a href="https://docs.getdbt.com/docs/build/incremental-models">incremental models</a> (instead of rebuilding tables on each run, new data is appended/merged/X with the already existing data).</li>
+<li><a href="https://docs.getdbt.com/docs/build/data-tests">tests</a>, assertions that run after your models.</li>
+<li><a href="https://docs.getdbt.com/docs/build/documentation">documentation</a>, <code>comment on</code> expressions.</li>
+<li><a href="https://docs.getdbt.com/docs/build/incremental-models">incremental models</a>, instead of rebuilding tables on each run, new data is appended/merged/X with the already existing data.</li>
 </ul></li>
 </ul>
 </div>
