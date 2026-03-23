@@ -75,7 +75,7 @@ dbt constructs a DAG of all the relations in your project, so it knows that it n
 
 ** 3. Not much else.
 - dbt is not a compute engine, all compute happens on the underlying data platform.
-- dbt is not an ingestion or BI tool, it just orchestrates data transformations.
+- dbt is not an ingestion or BI tool, it [[https://www.todepond.com/wikiblogarden/better-computing/just/][just]] orchestrates data transformations.
 - dbt doesn't understand your SQL (..[[https://docs.getdbt.com/docs/fusion][yet]]). If your SQL contains syntax errors, dbt will try to run the incorrect SQL and surface the error produced by the data platform.
 - There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order. E.g.:
   - [[https://docs.getdbt.com/docs/build/data-tests][tests]], assertions that run after your models.
