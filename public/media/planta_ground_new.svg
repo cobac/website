@@ -30,7 +30,7 @@
      inkscape:antialias-rendering="true"
      inkscape:zoom="1"
      inkscape:cx="506.5"
-     inkscape:cy="391.5"
+     inkscape:cy="390.5"
      inkscape:window-width="1920"
      inkscape:window-height="1080"
      inkscape:window-x="0"
@@ -2604,13 +2604,13 @@
          transform="translate(-14.529793,3.6324481)"><tspan
            x="49.219048"
            y="136.9912"
-           id="tspan16">yes, the main </tspan><tspan
+           id="tspan1">the main door </tspan><tspan
            x="49.219048"
            y="139.63704"
-           id="tspan20">door opens to </tspan><tspan
+           id="tspan2">opens to the </tspan><tspan
            x="49.219048"
            y="142.28288"
-           id="tspan21">the room</tspan></text><text
+           id="tspan4">room</tspan></text><text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:2.11667px;font-family:'IBM Plex Mono';-inkscape-font-specification:'IBM Plex Mono Thin';writing-mode:lr-tb;direction:ltr;fill:none;fill-opacity:0.444388;stroke:#808080;stroke-width:0.0722576;stroke-dasharray:none;stroke-opacity:1"
          x="29.643179"

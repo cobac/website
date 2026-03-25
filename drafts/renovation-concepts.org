@@ -3,40 +3,43 @@
 
 Dear architect,
 
-I want to renovate my home and I'm potentially interested in hiring you to help me design the renovation, drawing the plans and interfacing with the municipality to check what's possible to build. I also don't have a strong preference yet about which contractor to hire, so I'd be open to consider any referral from your network if you think they'd be a good fit.
-
-I want my home to feel like it is designed to fit my life, rather than like any other house in which I happen to live.
+I want to renovate my home and I'm potentially interested in hiring you to help me design the renovation, drawing the plans, interfacing with the municipality to check what's possible to build and choosing a contractor.
 
 * Current situation
 
-The neighbourhood was build in the 1970s and it consists of a mixture of one, two and three story flat-roofed houses; with a significant number of one and two story houses having a rooftop extension. My house is at the corner of a row of single-story terraced houses. The current layout is the original, the side walls are made of concrete and coarse gravel, and all interior walls are non-structural.
+My neighbourhood was build in the 1970s and it consists of a mixture of one, two and three storey flat-roofed houses; with a significant number of one and two storey houses having a rooftop extension. My house is at the corner of a row of single-storey terraced houses.
 
 #+CAPTION: diagram of the current layout
 #+NAME: current
 [[../media/planta_og.svg]]
 
-The main windows to the serra/garden are new, triple glazing, same as the skylight. All other windows are double glazing from the 90s.
-
 * Renovation design goals
 
 I want to build a rooftop extension and remodel the current ground floor.
 
+A lot of the renovations I've visited feel like the same model house on different addresses; I would like to make bolder design decisions to match more closely how I (will) use the spaces and my style preferences.
+
 ** Priorities
-1. Office/studio room in the top floor with a high degree of sound insulation with the neighbours' house. The goal is to be able to make music at night without bothering the neighbours.
+
+1. Office/studio room in the top floor with a high degree of sound insulation against the neighbours' house.
+   - The goal is to be able to make music at night without bothering the neighbours.
+   - Nothing too intense like heavy basses or loud percussion.
 2. Kitchen with plenty natural light.
 3. Top floor bathroom with natural light and ventilation. Ideally wall windows, a skylight could be a compromise.
 
 ** Nice to have
+
+I'm not sure I want to make non-sensible financial decisions for them.
 
 1. Ground floor bathroom with natural light and ventilation.
 2. All-electric energy system with a heat pump (+ supplementary on-demand water heating?)
 
 * Layout design
 
-There are two big unknowns about what the municipality will permit:  how large can the extension be, and how many side windows are possible to include in the top floor---or open in the ground floor.
+There are two big unknowns about what the municipality will permit:  how large can the rooftop extension be, and how many side windows are possible to include in the top floor---or open in the ground floor.
 
 ** Extension
-A very experienced contractor that has built over a dozen rooftop extensions in my neighbourhood insists that the municipality asks for 0.5m clearance between the current facade and the extension facade on my street. However, my next-door neighbours told me that the municipality told their architect that they needed ~3m clearance on the front facade, and that's the specification they used to build their extension. I'd like the extension to be as big as possible, but I think the most likely reality is that we would need to design the extension with the largest clearance.
+A very experienced contractor that has built over a dozen rooftop extensions in my neighbourhood insists that the municipality will ask for 0.5m clearance between the current facade and the extension facade on my house. However, my next-door neighbours told me that the municipality told their architect that they needed ~3m clearance on the front facade, and that's the specification they used to build their extension. I'd like the extension to be as big as possible, but I think the most likely reality is that we would need to design the extension with the smallest footprint.
 
 In the ideal case that the extension floor plan only needs 0.5m facade clearance, [[long][Figure 2]] is how I'm imagining the extension layout, with an open mind about how to do the central stairs area.
 
@@ -51,9 +54,7 @@ is where I'm at in terms of layout design.
 #+NAME: short
 [[../media/planta_top_short.svg]]
 
-My rationale for placing the bathroom in that side of the house is for the possibility of having a side window opening to the street. I'm not sure how realistic is to have the bathroom in that location giving that the plumbing of the current bathroom is on the other side of the house. If the municipality won't allow including a bathroom window, or the plumbing is too inconvenient, I'd be willing to build the bathroom in the opposite side and include a skylight.
-
-I want the top floor bathroom to include a shower, sink, toilet and bidet, regardless of the extension size.
+My rationale for placing the bathroom in that side of the house is for the possibility of having a side window opening to the street. I'm not sure how realistic is to have the bathroom in that location giving that the plumbing of the current bathroom is on the other side of the house. If the municipality won't allow including a bathroom window, or the plumbing is too inconvenient, I guess the bathroom would have to be in the opposite side and include a skylight.
 
 ** Ground floor
 
@@ -63,23 +64,9 @@ The "back" garden entrance is used as the main entrance to the home, so I want t
 
 The current size of the kitchen and living area feels perfect, so I'm not interested in making that room bigger, unless the stairs are included in it.
 
-Right now the kitchen has great natural light and ventilation because of the skylight above it, which will be gone after building the extension. That's why I'm thinking about moving it to the street-side to place it next to the window, which would mean having the hallway door in the neighbours-side.
+Right now the kitchen has great natural light and ventilation because of the skylight above it, which will be gone after building the extension. That's why I'm thinking about moving the kitchen to the street-side to place it next to the window, which would mean having the hallway door in the neighbours-side.
 
 I want to maintain a fully functional ground floor bathroom with a shower, sink and toilet; but with smaller dimensions than the currently existing one.
 
 #+CAPTION: new ground floor layout diagram
 [[../media/planta_ground_new.svg]]
-
-* Building method
-
-A popular option on my neighbourhood are these guys: https://www.veerhuis.eu/ . They use metal frames that are build off-site and expanded polystyrene walls. It seems to cost slightly higher than a more traditional build, but with a faster built time and a higher insulation value.
-
-I don't have strong opinions and I'm open to standard methods or alternatives.
-
-* Interior design
-- concrete floors, underfloor heating, warm white walls
-- stainless steel kitchen and fixtures
-- 30x30 white tiles, with non-white grout
-- cork paneling and furniture, doors
-- glass blocks
-- no ceiling lights, all dimmable
