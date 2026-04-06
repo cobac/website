@@ -281,4 +281,12 @@ Posts are sorted in descending time."
 (org-babel-do-load-languages
  'org-babel-load-languages '((dot . t)))
 
+(setopt org-html-footnotes-section
+  "<div id=\"footnotes\">
+  <!-- I <3 %s -->
+<div id=\"text-footnotes\">
+%s
+</div>
+</div>")
+
 (org-static-blog-publish t)

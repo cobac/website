@@ -2,7 +2,7 @@
 #+date: <2026-03-08 Sun>
 #+filetags: food
 
-Some friends asked for a recipe of my ragù alla bolognese 🤌.
+Some friends asked for a recipe of my ragù alla bolognese[fn:1].
 
 Ingredients:
 - 1.5kg of nice quality minced meat, not too fatty, half pork half beef.
@@ -22,3 +22,5 @@ On a +7L pot:
 - Blend and add the remaining 1/4 of *fresh tomatoes*. Nice fresh fruitiness that contrasts with the rich deep flavour of the reduction. Maybe some finely chopped fresh *herbs*. Adjust *salt*; it is more versatile if it's less salty than ideal, you can always add more later.
 
 Bolognese in the fridge, bolognese in the freezer. Bolognese in lasagna with almond-milk bechamel.
+
+[fn:1] xd
