@@ -203,10 +203,9 @@ a {
 }
 
 a::after {
-    content:"~";
+    content:"↗";
     color:var(--accent);
 }
-
 
 /* a::selection { */
 /*     color: var(--bg); */
