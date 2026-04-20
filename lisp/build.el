@@ -221,8 +221,8 @@ blog post, sorted by tags, but no post body."
   "Assemble single TAG for all filenames."
   (let ((post-filenames (cdr tag)))
     (setq post-filenames
-          (sort post-filenames (lambda (x y) (time-less-p (org-static-blog-get-date x)
-                                                          (org-static-blog-get-date y)))))
+          (sort post-filenames (lambda (x y) (time-less-p (org-static-blog-get-date y)
+                                                          (org-static-blog-get-date x)))))
     (concat "<li>" "<span class=\"tag-title\" id=\"" (downcase (car
                                                                 tag))
             "\">" (downcase (car tag))
