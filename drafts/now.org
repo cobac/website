@@ -1,6 +1,10 @@
 #+title: now
-#+date: <2026-02-07 Sat>
+#+date: <2026-04-20 Mon>
 #+filetags:
+
+- I was going to change this section to smth new, but I'm still really into eating *spinach*.
+
+#+HTML: <div class="post-date"> ~ 2026-02-07</div>
 
 - I'm recently into eating *spinach*.
   - Blanched for ~15s on salted water.
