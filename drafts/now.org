@@ -1,6 +1,10 @@
 #+title: now
-#+date: <2026-05-09 Sat>
+#+date: <2026-05-18 Mon>
 #+filetags:
+
+- Who cares about blanching, just make the quick sauce and stir the raw *spinach* in.
+
+#+HTML: <div class="post-date"> ~ 2026-05-09</div>
 
 - *spinach* and *kimchi*
 
