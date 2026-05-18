@@ -23,6 +23,8 @@
 
 (setq org-static-blog-publish-url ".")
 
+(setq coba-org-static-blog-actual-publish-url "https://cobac.eu/")
+
 (setq org-static-blog-publish-directory "public/")
 
 (setq org-static-blog-posts-directory "posts/")
@@ -288,5 +290,55 @@ Posts are sorted in descending time."
 %s
 </div>
 </div>")
+
+(defun org-static-blog-get-rss-item (post-filename)
+  "Overwriten coba-org-static-blog-actual-publish-url."
+  (let ((post-url (url-encode-url
+                   (concat-to-dir coba-org-static-blog-actual-publish-url
+                                  (org-static-blog-get-post-public-path post-filename)))))
+    (concat
+     "<item>\n"
+     "  <title><![CDATA[" (org-static-blog-get-title post-filename) "]]></title>\n"
+     "  <description><![CDATA["
+     (org-static-blog-get-post-content post-filename t)
+     "]]></description>\n"
+     (let ((categories ""))
+       (when (and (org-static-blog-get-tags post-filename) org-static-blog-enable-tags)
+         (dolist (tag (org-static-blog-get-tags post-filename))
+           (setq categories (concat categories
+                                    "  <category><![CDATA[" tag "]]></category>\n"))))
+       categories)
+     "  <link>" post-url "</link>\n"
+     "  <guid>" post-url "</guid>\n"
+     "  <pubDate>"
+     (let ((system-time-locale "C"))
+       (format-time-string "%a, %d %b %Y %H:%M:%S %z" (org-static-blog-get-date post-filename)))
+     "</pubDate>\n"
+     "</item>\n")))
+
+(defun org-static-blog--write-rss (items &optional tag)
+  "Generates an RSS file for the given TAG, or for all tags is TAG is nil. Overwriten coba-org-static-blog-actual-publish-url."
+  (let ((title (format "%s%s"
+                       org-static-blog-publish-title
+                       (if tag (concat " - " tag) "")))
+        (url (format "%s%s"
+                     coba-org-static-blog-actual-publish-url
+                     (if tag (concat "/tag-" (downcase tag) ".html") "")))
+        (items (sort items (lambda (x y) (time-less-p (car y) (car x))))))
+    (org-static-blog-with-find-file
+     (org-static-blog--rss-filename tag)
+     (concat "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+	           "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n"
+	           "<channel>\n"
+	           "<title><![CDATA[" title "]]></title>\n"
+	           "<description><![CDATA[" title "]]></description>\n"
+	           "<link>" url "</link>\n"
+	           "<lastBuildDate>" (let ((system-time-locale "C")) ; force dates to render as per RSS spec
+				                         (format-time-string "%a, %d %b %Y %H:%M:%S %z" (current-time)))
+             "</lastBuildDate>\n"
+             org-static-blog-rss-extra
+	           (apply 'concat (mapcar 'cdr (org-static-blog--prune-items items)))
+	           "</channel>\n"
+	           "</rss>\n"))))
 
 (org-static-blog-publish t)

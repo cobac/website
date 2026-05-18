@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title><![CDATA[Coba]]></title>
+<description><![CDATA[Coba]]></description>
+<link>https://cobac.eu/</link>
+<lastBuildDate>Mon, 18 May 2026 21:47:35 +0200</lastBuildDate>
+<item>
+  <title><![CDATA[boloñesa]]></title>
+  <description><![CDATA[
+<div class="taglist">
+
+<a href="./tags.html#food">food</a></div>
+</div>
+<div class="post-date">
+~ 2026-03-08</div><p>
+Some friends asked for a recipe of my ragù alla bolognese<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.
+</p>
+
+<p>
+Ingredients:
+</p>
+<ul class="org-ul">
+<li>1.5kg of nice quality minced meat, not too fatty, half pork half beef.</li>
+<li>2kg of nice tomatoes. If you don't have access to fresh tomatoes grown until ripe on the plant, the best bet are canned tomatoes from a nice brand, like anything with a San Marzano DOP. And tomato paste.</li>
+<li>Mirepoix: a sensible amount of carrots, celery and onion. And garlic.</li>
+<li>Red wine that you'd drink.</li>
+<li>Herbs, e.g. parsley rosemary thyme oregano basil, black pepper chilly.</li>
+</ul>
+
+<p>
+On a +7L pot:
+</p>
+<ul class="org-ul">
+<li>Heat the pot, add oil.</li>
+<li>Add the <b>mince</b> in fistfuls into highish heat, letting each portion cook and develop some color. Stir enough to not let it burn, but let it brown. You want to transfer enough heat to the watery juices to evaporate them quickly , to fry the meat into a caramelized brown crumble instead of boiling it into mushy grey chunks. Some <b>salt</b>.
+<ul class="org-ul">
+<li>If there's time pressure, you can use a second pan to brown the meat faster in parallel.</li>
+</ul></li>
+<li>Add the <b>mirepoix</b>, the <b>garlic</b> and the <b>tomato paste</b>, and let it cook until translucentish and the tomato paste starts sticking to the bottom of the pot.</li>
+<li>Add ~0.5L of <b>red wine</b>, stir to scrub clean the bottom of the pot, and let it reduce down for a bit.</li>
+<li>Add 3/4 of the <b>tomatoes</b>. If they are fresh take the woody bits out (and peel them if you don't want to notice the skin cannoli).</li>
+<li>Once it boils reduce to low heat and let it cook for a few hours until it's reduced past the consistency that you want. Add <b>herbs</b>. Stir semi frequently, don't let the bottom burn. Careful with the splash.</li>
+<li>Blend and add the remaining 1/4 of <b>fresh tomatoes</b>. Nice fresh fruitiness that contrasts with the rich deep flavour of the reduction. Maybe some finely chopped fresh <b>herbs</b>. Adjust <b>salt</b>; it is more versatile if it's less salty than ideal, you can always add more later.</li>
+</ul>
+
+<p>
+Bolognese in the fridge, bolognese in the freezer. Bolognese in lasagna with almond-milk bechamel.
+</p>
+<div id="footnotes">
+  <!-- I <3 Footnotes -->
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+xd
+</p></div></div>
+
+
+</div>
+</div>]]></description>
+  <category><![CDATA[food]]></category>
+  <link>https://cobac.eu/bolo%C3%B1esa.html</link>
+  <guid>https://cobac.eu/bolo%C3%B1esa.html</guid>
+  <pubDate>Sun, 08 Mar 2026 00:00:00 +0100</pubDate>
+</item>
+<item>
+  <title><![CDATA[what dbt does]]></title>
+  <description><![CDATA[
+<div class="taglist">
+
+<a href="./tags.html#data">data</a></div>
+</div>
+<div class="post-date">
+~ 2026-02-11</div><p>
+Before, I used to work as a data/analytics engineer <a href="https://xebia.com">consultant</a>, where I got a lot of experience using dbt: it was a core component of the data platforms I built, and I helped dozens of clients of all sizes setting up dbt deployments while acting as a subcontracted onboarding partner to dbt Labs.
+</p>
+
+<p>
+Now, I'm working for a data <a href="https://motherduck.com">startup</a>, where dbt is one of the main ways our customers interact with our product. I originally wrote this post as a presentation for my customer-facing colleagues, to share a clear mental model of what dbt does, so that we can support our customers using dbt as best as possible.
+</p>
+
+<p>
+dbt is a framework to engineer data transformation pipelines. It scaffolds the process of implementing software engineering practices like version control, CI/CD, automated testing and deployment environments.
+</p>
+
+<p>
+dbt is not a very magical framework, and most of what it offers is implemented by two features:
+</p>
+<div id="outline-container-1.%20You%20write%20%2Fdeclarative%2F%20select%20statements%20that%20dbt%20compiles%20into%20complete%20SQL%20statements." class="outline-2">
+<h2 id="1.%20You%20write%20%2Fdeclarative%2F%20select%20statements%20that%20dbt%20compiles%20into%20complete%20SQL%20statements.">1. You write <i>declarative</i> select statements that dbt compiles into complete SQL statements.</h2>
+<div class="outline-text-2" id="text-1.%20You%20write%20%2Fdeclarative%2F%20select%20statements%20that%20dbt%20compiles%20into%20complete%20SQL%20statements.">
+<p>
+Each model is a combination of declarative SQL and expressions from a templating engine called jinja (things within <code>{{ }}</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/models/marts/current_customers.sql
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">written by you
+</span>
+<span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
+    <span class="htmlize-keyword">select</span> *
+    <span class="htmlize-keyword">from</span> {{ <span class="htmlize-type">ref</span>("stg_erp__customers") }})
+
+<span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
+<span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
+</pre>
+</div>
+
+<p>
+dbt will compile your project into SQL statements that modify the state of your data warehouse. Like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/target/run/dbt_project/models/marts/current_customers.sql
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">produced by dbt
+</span>
+<span class="htmlize-keyword">create</span> <span class="htmlize-keyword">or</span> replace <span class="htmlize-keyword">table</span> "production"."marts"."current_customers" <span class="htmlize-keyword">as</span>
+<span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "user_dev"."coba"."current_customers"
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or                   "ci_tmp__run_uuid"."marts"."current_customers"
+</span>
+<span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
+    <span class="htmlize-keyword">select</span> *
+    <span class="htmlize-keyword">from</span> "production"."staging"."stg_erp__customers")
+<span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or    "user_dev"."coba"."stg_erp__customers")
+</span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">or    "ci_tmp__run_uuid"."staging"."stg_erp__customers")
+</span>
+<span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
+<span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
+</pre>
+</div>
+
+<p>
+The same version-controlled source code gets compiled to different SQL statements depending on the environment (e.g. prod, personal dev environment, ephemeral CI run) that runs the dbt project.
+</p>
+</div>
+</div>
+<div id="outline-container-2.%20dbt%20runs%20those%20statements%20in%20the%20correct%20order." class="outline-2">
+<h2 id="2.%20dbt%20runs%20those%20statements%20in%20the%20correct%20order.">2. dbt runs those statements in the correct order.</h2>
+<div class="outline-text-2" id="text-2.%20dbt%20runs%20those%20statements%20in%20the%20correct%20order.">
+<p>
+dbt constructs a DAG of all the relations in your project, so it knows that it needs to wait for the <code>stg_erp__customers</code> model to finish building before running the <code>current_customers</code> model.
+</p>
+
+
+<figure id="fig-dbt-simple-dag">
+<img src="../media/dbt-simple-dag.svg" alt="source:erp__customer -&gt; stg_erp__customers -&gt; current_customers" class="org-svg">
+
+</figure>
+</div>
+</div>
+<div id="outline-container-3.%20Not%20much%20else." class="outline-2">
+<h2 id="3.%20Not%20much%20else.">3. Not much else.</h2>
+<div class="outline-text-2" id="text-3.%20Not%20much%20else.">
+<ul class="org-ul">
+<li>dbt is not a compute engine, all compute happens on the underlying data platform.</li>
+<li>dbt is not an ingestion or BI tool, it <a href="https://www.todepond.com/wikiblogarden/better-computing/just/">just</a> orchestrates data transformations.</li>
+<li>dbt doesn't understand your SQL (..<a href="https://docs.getdbt.com/docs/fusion">yet</a>). If your SQL contains syntax errors, dbt will try to run the incorrect SQL and surface the error produced by the data platform.</li>
+<li>There are bells and whistles, but all of them are 1. compiled into SQL statements that 2. are run in the correct order. E.g.:
+<ul class="org-ul">
+<li><a href="https://docs.getdbt.com/docs/build/data-tests">tests</a>, assertions that run after your models.</li>
+<li><a href="https://docs.getdbt.com/docs/build/documentation">documentation</a>, <code>comment on</code> expressions.</li>
+<li><a href="https://docs.getdbt.com/docs/build/incremental-models">incremental models</a>, instead of rebuilding tables on each run, new data is appended/merged/X with the already existing data.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+]]></description>
+  <category><![CDATA[data]]></category>
+  <link>https://cobac.eu/what-dbt-does.html</link>
+  <guid>https://cobac.eu/what-dbt-does.html</guid>
+  <pubDate>Wed, 11 Feb 2026 00:00:00 +0100</pubDate>
+</item>
+<item>
+  <title><![CDATA[rip quinoa boy]]></title>
+  <description><![CDATA[
+<div class="taglist">
+
+<a href="./tags.html#food">food</a></div>
+</div>
+<div class="post-date">
+~ 2026-01-26</div><p>
+David Lynch passed away last year. He made a <a href="https://www.youtube.com/watch?v=uSP-ewdJYJc">video</a> going over a quinoa recipe, and in his honor I decided to explore cooking with this grain that I hadn't used a lot before.
+</p>
+
+<p>
+My previous perception of quinoa dishes was that they were often bland and meh, but after some exploration over the past year I've come to really appreciate two characteristics: a pearl-like consistency that reminds me of pearl couscous or roe, and a subtle nutty flavour.
+</p>
+
+<p>
+The key for quinoa to taste nutty is to roast the raw grains on a pan or baking tray until they are fragrant and look toasty, and the key to get the pearl-y texture is to not overcook them.
+</p>
+
+<ol class="org-ol">
+<li>Toast the raw <b>quinoa</b> grains on a pan over medium heat, constantly moving them around for a few minutes until they smell nutty.</li>
+<li>Add the same volume of the grains in <b>seasoned water</b> or broth, stir a bit and cover.</li>
+<li>Let it boil and steam at low heat. The goal is for all the water to be absorbed once the grains are ready. You can control the wetness of the mix by uncovering the pan to help more water evaporate, or by adding extra (unseasoned) water if it dries up.</li>
+<li>Once they are just about to have your ideal texuture, take them off the heat and let them rest for a couple minutes.</li>
+<li>Add some <b>fat</b> like butter or olive oil, stir a bit to loosen up the grains, and serve with whatever warm or cold.</li>
+</ol>
+]]></description>
+  <category><![CDATA[food]]></category>
+  <link>https://cobac.eu/quinoa-boy.html</link>
+  <guid>https://cobac.eu/quinoa-boy.html</guid>
+  <pubDate>Mon, 26 Jan 2026 00:00:00 +0100</pubDate>
+</item>
+</channel>
+</rss>
