@@ -1,1 +1,14 @@
 * [[https://cobac.eu][cobac.eu]]
+
+=.htaccess=
+
+#+BEGIN_SRC plain
+#KONSOLEH AREA END - PLEASE ADD MANUAL CHANGES BELOW
+RewriteEngine on
+RewriteCond %{THE_REQUEST} /index\.html [NC]
+RewriteRule ^(.*)index\.html$ /$1 [NC,L,R=301]
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R,NE]
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+#+END_SRC
