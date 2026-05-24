@@ -73,8 +73,6 @@
 
 (setq org-static-blog-page-postamble (coba-file-content-as-string "morsels/postamble.html"))
 
-(setq org-static-blog-index-front-matter (coba-file-content-as-string "morsels/root.html"))
-
 (defun org-static-blog-post-preamble (post-filename)
   "Returns the formatted date and headline of the post.
 This function is called for every post and prepended to the post body.
@@ -340,5 +338,33 @@ Posts are sorted in descending time."
 	           (apply 'concat (mapcar 'cdr (org-static-blog--prune-items items)))
 	           "</channel>\n"
 	           "</rss>\n"))))
+
+(defun org-static-blog-assemble-index ()
+  "Generates variants of `index-xx.html', each of them with different content from `moresels/root-variants'.
+   Each root variant ends up in approximately the same proportion of `index-xx.html' files,
+   with the idea that the webserver serves a random one as the root `index.html' each time."
+  (let* ((n-slots 60)
+         (variants-dir "morsels/root-variants")
+         (variants (sort (directory-files variants-dir t "\\.html\\'")
+                         #'string<))
+         (n (length variants))
+         (post-filenames (sort (org-static-blog-get-post-filenames)
+                               (lambda (x y)
+                                 (time-less-p (org-static-blog-get-date x)
+                                              (org-static-blog-get-date y))))))
+    (when (zerop n)
+      (error "No variants found in %s" variants-dir))
+    (dotimes (i n-slots)
+      (let ((front-matter (coba-file-content-as-string
+                           (nth (mod i n) variants)))
+            (out-path (concat-to-dir
+                       org-static-blog-publish-directory
+                       (format "index-%02d.html" i))))
+        (org-static-blog-assemble-multipost-page
+         out-path
+         (last post-filenames org-static-blog-index-length)
+         front-matter)))
+    (message "Filled %d slots from %d variants in public/index-NN.html"
+             n-slots n)))
 
 (org-static-blog-publish t)

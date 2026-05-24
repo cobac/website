@@ -4,7 +4,19 @@
 
 #+BEGIN_SRC plain
 #KONSOLEH AREA END - PLEASE ADD MANUAL CHANGES BELOW
+
 RewriteEngine on
+
+# Serve a random index: map TIME_SEC (00-59) to /index-xx.html.
+# css random() is experimental and not widely available
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{TIME_SEC} (\d\d)$
+RewriteRule ^ /index-%1.html [L]
+
+<FilesMatch "^index-[0-5][0-9]\.html$">
+  Header set Cache-Control "no-store, must-revalidate"
+</FilesMatch>
+
 RewriteCond %{THE_REQUEST} /index\.html [NC]
 RewriteRule ^(.*)index\.html$ /$1 [NC,L,R=301]
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
