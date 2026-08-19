@@ -1,6 +1,10 @@
 #+title: now
-#+date: <2026-05-18 Mon>
+#+date: <2026-08-19 Wed>
 #+filetags:
+
+- Hooked on learning about [[https://www.youtube.com/watch?v=pOwPs4kNSwc&list=PLCewapt2D7PsD6fL3KkNInBYCQHLZuGoM][the weather]].
+
+#+HTML: <div class="post-date"> ~ 2026-08-20</div>
 
 - Who cares about blanching, just make the quick sauce and stir the raw *spinach* in.
 
