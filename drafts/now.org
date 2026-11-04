@@ -1,7 +1,11 @@
 #+title: now
-#+date: <2026-08-19 Wed>
+#+date: <2026-11-04 Wed>
 #+filetags:
 
+- after 10 yers of linux on the desktop I've finally moved to wayland
+- jailbroke my kindle, koreader feels really nice
+
+#+HTML: <div class="post-date"> ~ 2026-08-19</div>
 - Hooked on learning about [[https://www.youtube.com/watch?v=pOwPs4kNSwc&list=PLCewapt2D7PsD6fL3KkNInBYCQHLZuGoM][the weather]].
 
 #+HTML: <div class="post-date"> ~ 2026-08-20</div>

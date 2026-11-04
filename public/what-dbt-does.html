@@ -58,7 +58,7 @@ Each model is a combination of declarative SQL and expressions from a templating
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/models/marts/current_customers.sql
+<pre class="src src-sql"><code><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/models/marts/current_customers.sql
 </span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">written by you
 </span>
 <span class="htmlize-keyword">with</span> stg_customers <span class="htmlize-keyword">as</span> (
@@ -67,7 +67,7 @@ Each model is a combination of declarative SQL and expressions from a templating
 
 <span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
 <span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -75,7 +75,7 @@ dbt will compile your project into SQL statements that modify the state of your 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sql"><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/target/run/dbt_project/models/marts/current_customers.sql
+<pre class="src src-sql"><code><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">/target/run/dbt_project/models/marts/current_customers.sql
 </span><span class="htmlize-comment-delimiter">-- </span><span class="htmlize-comment">produced by dbt
 </span>
 <span class="htmlize-keyword">create</span> <span class="htmlize-keyword">or</span> replace <span class="htmlize-keyword">table</span> "production"."marts"."current_customers" <span class="htmlize-keyword">as</span>
@@ -90,7 +90,7 @@ dbt will compile your project into SQL statements that modify the state of your 
 </span>
 <span class="htmlize-keyword">select</span> * <span class="htmlize-keyword">from</span> stg_customers
 <span class="htmlize-keyword">where</span> status = <span class="htmlize-string">'active'</span>
-</pre>
+</code></pre>
 </div>
 
 <p>
